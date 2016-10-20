@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_inical"
     android:layout_width="match_parent"
@@ -8,10 +9,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.com.unisal.curso.horasComplementares.activity.ActivityInical">
+    tools:context="br.com.unisal.curso.horasComplementares.activity.InicialActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        app:srcCompat="@drawable/form_icon"
+        android:id="@+id/btnFormInicial"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:onClick="irParaFormulario" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/list_icon"
+        android:id="@+id/inicialListBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnFormInicial"
+        android:layout_marginBottom="64dp"
+        android:onClick="irParaLista"/>
 </RelativeLayout>

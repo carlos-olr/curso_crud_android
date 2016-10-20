@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_formulario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.com.unisal.curso.horasComplementares.activity.FormularioActivity">
+
+    <TextView
+        android:text="Nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNome"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editNome"
+        android:contentDescription="Nome Completo"
+        android:singleLine="true"
+        android:layout_below="@+id/txtNome"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Descrição"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editNome"
+        android:layout_alignParentStart="true"
+        android:id="@+id/txtDesc"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignParentEnd="true"
+        android:maxLines="4"/>
+
+    <TextView
+        android:text="Descrição"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editNome"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignParentEnd="true"
+        android:maxLines="4"/>
+
+    <TextView
+        android:text="Descrição"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editNome"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignParentEnd="true"
+        android:maxLines="4"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_below="@+id/txtDesc"
+        android:layout_alignParentStart="true"
+        android:id="@+id/editDescricao"
+        android:layout_alignParentEnd="true"
+        android:singleLine="false"
+        android:maxLength="144"/>
+
+    <TextView
+        android:text="Quantidade de Horas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editDescricao"
+        android:layout_alignParentStart="true"
+        android:id="@+id/txtQtd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_below="@+id/txtQtd"
+        android:layout_alignParentStart="true"
+        android:id="@+id/editQtdHoras"
+        android:layout_alignEnd="@+id/txtQtd" />
+
+    <TextView
+        android:text="Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editQtdHoras"
+        android:layout_alignParentStart="true"
+        android:id="@+id/txtData"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignEnd="@+id/editQtdHoras" />
+
+    <ImageView
+        android:layout_width="100px"
+        android:layout_height="100px"
+        app:srcCompat="@drawable/camera_icon"
+        android:layout_below="@+id/txtComprovante"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imgCamera"
+        android:cropToPadding="false"
+        android:minHeight="10px"
+        android:maxHeight="20px"
+        android:onClick="abrirCamera"
+        />
+
+    <ImageView
+        android:layout_width="100px"
+        android:layout_height="100px"
+        app:srcCompat="@drawable/check_ok_icon"
+        android:id="@+id/imgCheck"
+        android:layout_below="@+id/txtComprovante"
+        android:layout_alignEnd="@+id/txtComprovante"
+        android:onClick="exibirImagem"/>
+
+    <ImageView
+        android:layout_width="100px"
+        android:layout_height="100px"
+        app:srcCompat="@drawable/calendar_icon"
+        android:layout_below="@+id/txtData"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imgCalendar"
+        android:onClick="abrirModalData"/>
+
+    <TextView
+        android:text="Comprovante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtComprovante"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@+id/imgCalendar"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imgCalendar"
+        android:id="@+id/txtDataOut"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_above="@+id/txtComprovante"
+        android:layout_below="@+id/txtData"/>
+
+    <Button
+        android:text="Remover"
+        android:layout_width="300px"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDeletar"
+        android:visibility="invisible"
+        android:onClick="remover"
+        android:layout_marginBottom="19dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:text="Salvar"
+        android:layout_width="300px"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSalvar"
+        android:onClick="salvar"
+        android:layout_above="@+id/btnDeletar"
+        android:layout_alignStart="@+id/btnDeletar"/>
+
+</RelativeLayout>
