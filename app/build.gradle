@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
 dependencies {
@@ -27,4 +28,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.1.0'
     compile 'com.android.support:support-v4:24.1.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.satyan:sugar:1.4'
 }

@@ -17,20 +17,19 @@ import br.com.unisal.curso.horasComplementares.repository.HoraComplementarReposi
 public class ListaActivity extends AppCompatActivity {
 
     private HoraComplementarRepository repository;
-    private ListView listView;
-    private HoraComplementarAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.repository = new HoraComplementarRepository(this);
+        this.repository = new HoraComplementarRepository();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-        this.adapter = new HoraComplementarAdapter(this, R.layout.item_lista, obterDados());
-        this.listView = (ListView) this.findViewById(R.id.listaHorasComplementares);
-        this.listView.setAdapter(this.adapter);
+        HoraComplementarAdapter adapter = new HoraComplementarAdapter(this,
+            R.layout.item_lista, obterDados());
+        ListView listView = (ListView) this.findViewById(R.id.listaHorasComplementares);
+        listView.setAdapter(adapter);
 
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HoraComplementar hc = (HoraComplementar) parent.getItemAtPosition(position);

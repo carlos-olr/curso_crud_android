@@ -28,13 +28,13 @@ public class FormularioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.repository = new HoraComplementarRepository(this);
+        this.repository = new HoraComplementarRepository();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
         String id = getIntent().getStringExtra("id");
         if (id != null) {
-            HoraComplementar hc = this.repository.buscarPorId(id);
+            HoraComplementar hc = this.repository.buscarPorId(Long.valueOf(id));
 
             EditText editNome = (EditText) this.findViewById(R.id.editNome);
             EditText editDescricao = (EditText) this.findViewById(R.id.editDescricao);
@@ -83,7 +83,7 @@ public class FormularioActivity extends AppCompatActivity {
         startActivity(new Intent(this, ListaActivity.class));
     }
 
-    public void remover(View view) {
+    public void deletar(View view) {
         this.repository.deletar(Long.valueOf(this.id));
         startActivity(new Intent(this, ListaActivity.class));
     }

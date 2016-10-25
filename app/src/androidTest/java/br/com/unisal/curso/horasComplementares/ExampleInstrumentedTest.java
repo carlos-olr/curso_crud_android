@@ -4,8 +4,12 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.orm.SugarRecord;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import br.com.unisal.curso.horasComplementares.modelo.HoraComplementar;
 
 import static org.junit.Assert.*;
 
@@ -22,5 +26,11 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("br.com.unisal.curso.horasComplementares", appContext.getPackageName());
+
+        HoraComplementar h = new HoraComplementar();
+
+        Long a = h.save();
+
+        assertNotNull(SugarRecord.findById(HoraComplementar.class, a));
     }
 }

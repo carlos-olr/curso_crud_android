@@ -1,24 +1,28 @@
 package br.com.unisal.curso.horasComplementares.modelo;
 
+import com.orm.SugarRecord;
+
 /**
  * Created by carlos on 18/10/16.
  */
 
-public class HoraComplementar {
+public class HoraComplementar extends SugarRecord {
 
-    private Long id;
     private String nome;
     private String descricao;
     private Long dataEvento;
     private Integer quantidadehoras;
     private byte[] comprovante;
 
-    public Long getId() {
-        return id;
+    public HoraComplementar() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public HoraComplementar(String nome, String descricao, Long dataEvento, Integer quantidadehoras, byte[] comprovante) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataEvento = dataEvento;
+        this.quantidadehoras = quantidadehoras;
+        this.comprovante = comprovante;
     }
 
     public String getNome() {
