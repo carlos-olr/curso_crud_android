@@ -1,4 +1,4 @@
-package br.com.unisal.curso.horasComplementares.modelo;
+package br.com.unisal.curso.horasComplementares.model;
 
 import com.orm.SugarRecord;
 
@@ -11,17 +11,18 @@ public class HoraComplementar extends SugarRecord {
     private String nome;
     private String descricao;
     private Long dataEvento;
-    private Integer quantidadehoras;
+    private Integer quantidadeHoras;
     private byte[] comprovante;
 
     public HoraComplementar() {
     }
 
-    public HoraComplementar(String nome, String descricao, Long dataEvento, Integer quantidadehoras, byte[] comprovante) {
+    public HoraComplementar(String nome, String descricao, Long dataEvento,
+        Integer quantidadeHoras, byte[] comprovante) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataEvento = dataEvento;
-        this.quantidadehoras = quantidadehoras;
+        this.quantidadeHoras = quantidadeHoras;
         this.comprovante = comprovante;
     }
 
@@ -57,11 +58,11 @@ public class HoraComplementar extends SugarRecord {
         this.comprovante = comprovante;
     }
 
-    public Integer getQuantidadehoras() {
-        return quantidadehoras;
+    public Integer getQuantidadeHoras() {
+        return quantidadeHoras;
     }
 
-    public void setQuantidadehoras(Integer quantidadehoras) {
-        this.quantidadehoras = quantidadehoras;
+    public void setQuantidadeHoras(Integer quantidadeHoras) {
+        this.quantidadeHoras = quantidadeHoras;
     }
 }

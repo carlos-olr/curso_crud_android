@@ -18,16 +18,17 @@
         android:id="@+id/btnFormInicial"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:onClick="irParaFormulario" />
+        android:layout_marginTop="64dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/list_icon"
-        android:id="@+id/inicialListBtn"
+        android:id="@+id/btnInicialLista"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnFormInicial"
         android:layout_marginBottom="64dp"
-        android:onClick="irParaLista"/>
+        android:onClick="irParaLista"
+        android:contentDescription="@string/acesso_a_lista_de_horas_postadas"/>
+
 </RelativeLayout>

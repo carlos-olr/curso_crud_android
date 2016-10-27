@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.unisal.curso.horasComplementares.R;
-import br.com.unisal.curso.horasComplementares.modelo.HoraComplementar;
+import br.com.unisal.curso.horasComplementares.model.HoraComplementar;
 
 /**
  * Created by carlos on 18/10/16.
@@ -25,7 +25,8 @@ public class HoraComplementarAdapter extends BaseAdapter {
     private int layoutResourceId;
     private List<HoraComplementar> data = new ArrayList<>();
 
-    public HoraComplementarAdapter(Context context, int layoutResourceId, List<HoraComplementar> data) {
+    public HoraComplementarAdapter(Context context, int layoutResourceId,
+    List<HoraComplementar> data) {
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
@@ -67,7 +68,7 @@ public class HoraComplementarAdapter extends BaseAdapter {
         holder.nome.setText(item.getNome());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         holder.data.setText(sdf.format(new Date(item.getDataEvento())));
-        holder.qtdHoras.setText(item.getQuantidadehoras().toString());
+        holder.qtdHoras.setText(item.getQuantidadeHoras().toString());
         return row;
     }
 

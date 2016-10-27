@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 import br.com.unisal.curso.horasComplementares.R;
-import br.com.unisal.curso.horasComplementares.modelo.HoraComplementar;
+import br.com.unisal.curso.horasComplementares.model.HoraComplementar;
 import br.com.unisal.curso.horasComplementares.repository.HoraComplementarRepository;
 import br.com.unisal.curso.horasComplementares.util.BitmapUtils;
 
@@ -42,7 +42,7 @@ public class FormularioActivity extends AppCompatActivity {
 
             editNome.setText(hc.getNome());
             editDescricao.setText(hc.getDescricao());
-            editQtdHoras.setText(hc.getQuantidadehoras().toString());
+            editQtdHoras.setText(hc.getQuantidadeHoras().toString());
 
             this.id = hc.getId();
             this.bytesImagem = hc.getComprovante();
@@ -59,10 +59,9 @@ public class FormularioActivity extends AppCompatActivity {
             txtDataOut.setText(data);
 
             this.findViewById(R.id.btnDeletar).setVisibility(View.VISIBLE);
+            int imgCheckVisivel = this.bytesImagem != null ? View.VISIBLE : View.INVISIBLE;
+            this.findViewById(R.id.imgCheck).setVisibility(imgCheckVisivel);
         }
-
-        ImageView imgCheck = (ImageView) FormularioActivity.this.findViewById(R.id.imgCheck);
-        imgCheck.setVisibility(this.bytesImagem != null ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void salvar(View view) {
@@ -77,42 +76,38 @@ public class FormularioActivity extends AppCompatActivity {
 
         hc.setNome(editNome.getText().toString());
         hc.setDescricao(editDescricao.getText().toString());
-        hc.setQuantidadehoras(new Integer(editQtdHoras.getText().toString()));
+        hc.setQuantidadeHoras(new Integer(editQtdHoras.getText().toString()));
 
         this.repository.salvar(hc);
         startActivity(new Intent(this, ListaActivity.class));
     }
 
     public void deletar(View view) {
-        this.repository.deletar(Long.valueOf(this.id));
+        this.repository.deletar(this.id);
         startActivity(new Intent(this, ListaActivity.class));
     }
 
-    public void exibirImagem(View view) {
-        Intent intent = new Intent(this, ImagemDetalhesActivity.class);
-        intent.putExtra("imagem", this.bytesImagem);
-        startActivity(intent);
-    }
-
     public void abrirModalData(View view) {
-        Calendar mcurrentDate = Calendar.getInstance();
-        int ano = mcurrentDate.get(Calendar.YEAR);
-        int mes = mcurrentDate.get(Calendar.MONTH);
-        int dia = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+        Calendar hoje = Calendar.getInstance();
+        int ano = hoje.get(Calendar.YEAR);
+        int mes = hoje.get(Calendar.MONTH);
+        int dia = hoje.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int ano, int mes, int dia) {
                 String data = dia + "/" + mes + "/" + ano;
-                TextView txtDataOut = (TextView) FormularioActivity.this.findViewById(R.id.txtDataOut);
-                txtDataOut.setText(data);
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR, ano);
-                calendar.set(Calendar.MONTH, mes);
-                calendar.set(Calendar.DAY_OF_MONTH, dia);
-                FormularioActivity.this.dataEvento = calendar.getTimeInMillis();
+                TextView dataOut = (TextView) FormularioActivity.this.findViewById(R.id.txtDataOut);
+                dataOut.setText(data);
+                Calendar dataDefinida = Calendar.getInstance();
+                dataDefinida.set(Calendar.YEAR, ano);
+                dataDefinida.set(Calendar.MONTH, mes);
+                dataDefinida.set(Calendar.DAY_OF_MONTH, dia);
+                FormularioActivity.this.dataEvento = dataDefinida.getTimeInMillis();
             }
-        }, ano, mes, dia);
+        };
+
+        DatePickerDialog datePicker = new DatePickerDialog(this, listener, ano, mes, dia);
         datePicker.setTitle("Selecione a data:");
         datePicker.show();
     }
@@ -126,9 +121,15 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        this.bytesImagem = BitmapUtils.getBytes((Bitmap) data.getExtras().get("data"));
-        if (this.bytesImagem != null) {
+        if (data.getExtras() != null && data.getExtras().get("data") != null) {
+            this.bytesImagem = BitmapUtils.getBytes((Bitmap) data.getExtras().get("data"));
             this.findViewById(R.id.imgCheck).setVisibility(View.VISIBLE);
         }
+    }
+
+    public void exibirImagem(View view) {
+        Intent intent = new Intent(this, ImagemDetalhesActivity.class);
+        intent.putExtra("imagem", this.bytesImagem);
+        startActivity(intent);
     }
 }

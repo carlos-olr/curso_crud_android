@@ -9,7 +9,7 @@ import com.orm.SugarRecord;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import br.com.unisal.curso.horasComplementares.modelo.HoraComplementar;
+import br.com.unisal.curso.horasComplementares.model.HoraComplementar;
 
 import static org.junit.Assert.*;
 

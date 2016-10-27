@@ -1,21 +1,15 @@
 package br.com.unisal.curso.horasComplementares.repository;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-
 import com.google.common.collect.Lists;
 import com.orm.SugarRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.unisal.curso.horasComplementares.modelo.HoraComplementar;
-import br.com.unisal.curso.horasComplementares.util.SqliteHelper;
+import br.com.unisal.curso.horasComplementares.model.HoraComplementar;
 
 /**
  * Created by carlos on 18/10/16.
  */
-
 public class HoraComplementarRepository {
 
     public Long salvar(HoraComplementar hc) {
