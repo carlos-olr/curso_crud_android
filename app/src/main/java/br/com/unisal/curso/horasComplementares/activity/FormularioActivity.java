@@ -1,15 +1,16 @@
 package br.com.unisal.curso.horasComplementares.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -30,37 +31,39 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.repository = new HoraComplementarRepository();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_formulario);
+        this.setContentView(R.layout.activity_formulario);
 
-        String id = getIntent().getStringExtra("id");
-        if (id != null) {
-            HoraComplementar hc = this.repository.buscarPorId(Long.valueOf(id));
+        if (this.getIntent().getExtras() != null) {
+            HoraComplementar hc = (HoraComplementar) this.getIntent().getExtras().get("hc");
+            if (hc != null) {
+                this.id = hc.getId();
 
-            EditText editNome = (EditText) this.findViewById(R.id.editNome);
-            EditText editDescricao = (EditText) this.findViewById(R.id.editDescricao);
-            EditText editQtdHoras = (EditText) this.findViewById(R.id.editQtdHoras);
+                EditText editNome = (EditText) this.findViewById(R.id.editNome);
+                EditText editDescricao = (EditText) this.findViewById(R.id.editDescricao);
+                EditText editQtdHoras = (EditText) this.findViewById(R.id.editQtdHoras);
 
-            editNome.setText(hc.getNome());
-            editDescricao.setText(hc.getDescricao());
-            editQtdHoras.setText(hc.getQuantidadeHoras().toString());
+                editNome.setText(hc.getNome());
+                editDescricao.setText(hc.getDescricao());
+                editQtdHoras.setText(hc.getQuantidadeHoras().toString());
 
-            this.id = hc.getId();
-            this.bytesImagem = hc.getComprovante();
-            this.dataEvento = hc.getDataEvento();
+                this.id = hc.getId();
+                this.bytesImagem = hc.getComprovante();
+                this.dataEvento = hc.getDataEvento();
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(this.dataEvento);
-            int ano = calendar.get(Calendar.YEAR);
-            int mes = calendar.get(Calendar.MONTH);
-            int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(this.dataEvento);
+                int ano = calendar.get(Calendar.YEAR);
+                int mes = calendar.get(Calendar.MONTH);
+                int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-            String data = dia + "/" + mes + "/" + ano;
-            TextView txtDataOut = (TextView) FormularioActivity.this.findViewById(R.id.txtDataOut);
-            txtDataOut.setText(data);
+                String data = dia + "/" + mes + "/" + ano;
+                TextView txtDataOut = (TextView) this.findViewById(R.id.txtDataOut);
+                txtDataOut.setText(data);
 
-            this.findViewById(R.id.btnDeletar).setVisibility(View.VISIBLE);
-            int imgCheckVisivel = this.bytesImagem != null ? View.VISIBLE : View.INVISIBLE;
-            this.findViewById(R.id.imgCheck).setVisibility(imgCheckVisivel);
+                this.findViewById(R.id.btnDeletar).setVisibility(View.VISIBLE);
+                int imgCheckVisivel = this.bytesImagem != null ? View.VISIBLE : View.INVISIBLE;
+                this.findViewById(R.id.imgCheck).setVisibility(imgCheckVisivel);
+            }
         }
     }
 
@@ -79,12 +82,12 @@ public class FormularioActivity extends AppCompatActivity {
         hc.setQuantidadeHoras(new Integer(editQtdHoras.getText().toString()));
 
         this.repository.salvar(hc);
-        startActivity(new Intent(this, ListaActivity.class));
+        this.startActivity(new Intent(this, ListaActivity.class));
     }
 
     public void deletar(View view) {
         this.repository.deletar(this.id);
-        startActivity(new Intent(this, ListaActivity.class));
+        this.startActivity(new Intent(this, ListaActivity.class));
     }
 
     public void abrirModalData(View view) {

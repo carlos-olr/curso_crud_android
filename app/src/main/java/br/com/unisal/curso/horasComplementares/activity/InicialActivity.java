@@ -3,7 +3,6 @@ package br.com.unisal.curso.horasComplementares.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import br.com.unisal.curso.horasComplementares.R;
@@ -13,7 +12,7 @@ public class InicialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inical);
+        setContentView(R.layout.activity_inicial);
 
         View.OnClickListener onClick = new View.OnClickListener() {
 
@@ -24,7 +23,7 @@ public class InicialActivity extends AppCompatActivity {
             }
 
         };
-        this.findViewById(R.id.btnFormInicial).setOnClickListener(onClick);
+        this.findViewById(R.id.imgVwForm).setOnClickListener(onClick);
 
     }
 

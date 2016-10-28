@@ -34,7 +34,7 @@ public class ListaActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HoraComplementar hc = (HoraComplementar) parent.getItemAtPosition(position);
                 Intent intent = new Intent(ListaActivity.this, FormularioActivity.class);
-                intent.putExtra("id", hc.getId().toString());
+                intent.putExtra("hc", hc);
                 ListaActivity.this.startActivity(intent);
             }
         };

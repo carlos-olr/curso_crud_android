@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/form_icon"
-        android:id="@+id/btnFormInicial"
+        android:id="@+id/imgVwForm"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"/>
@@ -24,9 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/list_icon"
-        android:id="@+id/btnInicialLista"
+        android:id="@+id/imgVwLista"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/btnFormInicial"
+        android:layout_alignStart="@+id/imgVwForm"
         android:layout_marginBottom="64dp"
         android:onClick="irParaLista"
         android:contentDescription="@string/acesso_a_lista_de_horas_postadas"/>

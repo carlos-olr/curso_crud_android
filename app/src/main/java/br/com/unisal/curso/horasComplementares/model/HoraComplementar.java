@@ -2,11 +2,13 @@ package br.com.unisal.curso.horasComplementares.model;
 
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
+
 /**
  * Created by carlos on 18/10/16.
  */
 
-public class HoraComplementar extends SugarRecord {
+public class HoraComplementar extends SugarRecord implements Serializable {
 
     private String nome;
     private String descricao;
